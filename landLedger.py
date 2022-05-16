@@ -54,7 +54,7 @@ class Blockchain:
                 print(f'the hash is {hash_val}')
                 col1, col2 = st.columns(2)
                 col1.metric("Hash of the added block is",str(hash_val[:12] + '...'))
-                col2.metric("Nonce of the added block is", str(new_proof),str(new_proof - self.chain[-1]['proof']))
+                col2.metric("Nonce of the added block is", str(new_proof),str(int(new_proof) - int(self.chain[-1]['proof'])))
                 check_proof = True
             else:
                 new_proof += 1
