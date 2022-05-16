@@ -53,8 +53,10 @@ class Blockchain:
             if hash_val[:4] == '0000':
                 print(f'the hash is {hash_val}')
                 col1, col2 = st.columns(2)
-                col1.metric("Hash of the added block is",str(hash_val[:12] + '...'))
-                col2.metric("Nonce of the added block is", str(new_proof),str(int(new_proof) - int(self.chain[-1]['proof'])))
+                col1.metric("Hash of the added block is",
+                            str(hash_val[:12] + '...'))
+                col2.metric("Nonce of the added block is", str(new_proof), str(
+                    int(new_proof) - int(self.chain[-1]['proof'])))
                 check_proof = True
             else:
                 new_proof += 1
@@ -107,6 +109,18 @@ def checklogin():
         return False
 
 
+st.set_page_config(
+    page_title="plotchain.io",
+    page_icon="icon.png",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
+)
+st.image('Banner.png')
 st.sidebar.image('Block-Estate2.png')
 # st.sidebar.markdown("#### Contents:")
 option = st.sidebar.selectbox(
@@ -120,7 +134,6 @@ option = st.sidebar.selectbox(
 )
 
 if option == 'Home':
-    st.image('Banner.png')
     st.markdown("<h1 style = 'text-align: center'>Welcome</h1>",
                 unsafe_allow_html=True)
     # st.markdown('### WELCOME')
@@ -131,7 +144,6 @@ if option == 'Home':
         as one of the key indications that shows the development of a country.\
         We at **PLOT-CHAIN** provide banks, businesses, and governments **BLOCKCHAIN SOLUTIONS** to _track and investigate and manage Real-Estate_.')
 if option == 'View Blockchain':
-    st.image('Banner.png')
     # st.title('View the Blockchain')
     st.markdown("<h1 style = 'text-align: center'>View the Blockchain</h1>",
                 unsafe_allow_html=True)
@@ -147,7 +159,6 @@ if option == 'View Blockchain':
     # st.dataframe(data=df)
 
 if option == 'Admin Access':
-    st.image('admin.png')
     # st.title('ADMINSTRATION ACCESS')
     # st.markdown("<h1 style = 'text-align: center'>ADMINSTRATION ACCESS</h1>",
     # unsafe_allow_html=True)
@@ -186,7 +197,6 @@ if option == 'Admin Access':
 
 
 if option == 'Add Block':
-    st.image('Banner.png')
     st.title('ADD A NEW BLOCK')
     if checklogin():
         blockchain = Blockchain()
@@ -218,7 +228,6 @@ if option == 'Add Block':
         st.error('⚠ Log In First Please')
 
 if option == 'Health Check':
-    st.image('Banner.png')
     st.title('Check Blockchain Health Status')
     blockchain = Blockchain()
     is_valid = blockchain.is_chain_valid(blockchain.chain)
