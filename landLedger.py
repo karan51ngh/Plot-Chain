@@ -52,6 +52,9 @@ class Blockchain:
             hash_val = hashlib.sha256(encoded_block).hexdigest()
             if hash_val[:4] == '0000':
                 print(f'the hash is {hash_val}')
+                col1, col2 = st.columns(2)
+                col1.metric("Hash of the added block is",str(hash_val[:12] + '...'))
+                col2.metric("Nonce of the added block is", str(new_proof))
                 check_proof = True
             else:
                 new_proof += 1
